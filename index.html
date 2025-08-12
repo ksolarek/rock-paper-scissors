@@ -17,6 +17,19 @@
             let humanSelection = prompt("Choose paper, rock or scissors.", "paper / rock / scissors").toLowerCase();
             const randomIndex = Math.floor(Math.random()*3);
             const computerSelection = elementsArr[randomIndex];
+            if ((humanSelection === "rock" && computerSelection === "paper") ||
+            (humanSelection === "paper" && computerSelection === "scissors") ||
+            (humanSelection === "scissors" && computerSelection === "rock")) {
+                computerScore += 1;
+                alert(`Computer chose ${computerSelection}. You lose this round. Your score: ${humanScore}, computer's score: ${computerScore}`);
+                } else if ((humanSelection === "rock" && computerSelection === "scissors") ||
+                    (humanSelection === "paper" && computerSelection === "rock") ||
+                    (humanSelection === "scissors" && computerSelection === "paper")) {
+                humanScore += 1;
+                alert(`Computer chose ${computerSelection}. You win this round. Your score: ${humanScore}, computer's score: ${computerScore}`);
+                } else if (humanSelection === computerSelection) {
+                alert(`Computer chose ${computerSelection}. Draw! Your score: ${humanScore}, computer's score: ${computerScore}`);
+                }
         }
 
         
