@@ -32,14 +32,28 @@
         const elementsArr = ["paper", "rock", "scissors"];
         let humanScore = 0;
         let computerScore = 0;
+        let humanSelection = "";
 
+        const rockBtn = document.querySelector("#rock-btn");
+        const paperBtn = document.querySelector("#paper-btn");
+        const scissorsBtn = document.querySelector("#scissors-btn");
+
+        rockBtn.addEventListener("click", () => {
+            humanSelection = "rock";
+            playRound();
+        });
+
+        paperBtn.addEventListener("click", () => {
+            humanSelection = "paper";
+            playRound();
+        });
+
+        scissorsBtn.addEventListener("click", () => {
+            humanSelection = "scissors";
+            playRound();
+        });
 
         function playRound() {
-            let humanSelection = prompt("Choose paper, rock or scissors.", "paper / rock / scissors").toLowerCase();
-            if (!elementsArr.includes(humanSelection)) {
-            alert("Invalid choice! Please choose paper, rock, or scissors.");
-            return;
-            }
             const randomIndex = Math.floor(Math.random()*3);
             const computerSelection = elementsArr[randomIndex];
             if ((humanSelection === "rock" && computerSelection === "paper") ||
@@ -69,7 +83,6 @@
             }
         }
 
-        playGame();
 
         
     </script>
