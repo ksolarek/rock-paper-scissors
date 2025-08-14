@@ -15,6 +15,10 @@
 
         function playRound() {
             let humanSelection = prompt("Choose paper, rock or scissors.", "paper / rock / scissors").toLowerCase();
+            if (!elementsArr.includes(humanSelection)) {
+            alert("Invalid choice! Please choose paper, rock, or scissors.");
+            return;
+            }
             const randomIndex = Math.floor(Math.random()*3);
             const computerSelection = elementsArr[randomIndex];
             if ((humanSelection === "rock" && computerSelection === "paper") ||
