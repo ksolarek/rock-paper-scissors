@@ -36,6 +36,20 @@
                 }
         }
 
+        function playGame() {
+            while (humanScore < 3 && computerScore < 3) {
+                playRound();
+            }
+
+            if (humanScore === 3) {
+                alert(`You won the game! Final score: ${humanScore} : ${computerScore}`);
+            } else {
+                alert(`Computer won the game! Final score: ${humanScore} : ${computerScore}`);
+            }
+        }
+
+        playGame();
+
         
     </script>
 </body>
