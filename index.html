@@ -39,6 +39,8 @@
         const paperBtn = document.querySelector("#paper-btn");
         const scissorsBtn = document.querySelector("#scissors-btn");
         const mainContainer = document.querySelector(".main-container");
+        const restartButton = document.createElement("button");
+        restartButton.textContent = "Restart";
 
         rockBtn.addEventListener("click", () => {
             humanSelection = "rock";
@@ -57,11 +59,23 @@
 
         const scoreDiv = document.querySelector("#score-div");
         const finalScoreDiv = document.createElement("div")
+
+        restartButton.addEventListener("click", function() {
+            humanScore = 0;
+            computerScore = 0;
+            scoreDiv.textContent = "";
+            rockBtn.disabled = false;
+            paperBtn.disabled = false;
+            scissorsBtn.disabled = false;
+            finalScoreDiv.remove();
+            restartButton.remove();
+        });
+
         function disableButtons() {
             rockBtn.disabled = true;
             paperBtn.disabled = true;
             scissorsBtn.disabled = true;
-        }
+        };
 
         function playRound() {
             const randomIndex = Math.floor(Math.random()*3);
@@ -84,10 +98,12 @@
                 finalScoreDiv.textContent = `You won the game! Final score: ${humanScore} : ${computerScore}`;
                 mainContainer.appendChild(finalScoreDiv);
                 disableButtons();
+                mainContainer.appendChild(restartButton);
             } else if (computerScore === 3) {
                 finalScoreDiv.textContent = `Computer won the game! Final score: ${humanScore} : ${computerScore}`;
                 mainContainer.appendChild(finalScoreDiv);
                 disableButtons();
+                mainContainer.appendChild(restartButton);
             }
         }
 
