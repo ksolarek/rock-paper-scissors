@@ -24,6 +24,7 @@
             <button id="paper-btn">Paper</button>
             <button id="scissors-btn">Scissors</button>
         </div>
+        <div id="score-div"></div>
     </div>
 
 
@@ -53,6 +54,9 @@
             playRound();
         });
 
+        const scoreDiv = document.querySelector("#score-div");
+        const finalScoreDiv = document.createElement("div")
+
         function playRound() {
             const randomIndex = Math.floor(Math.random()*3);
             const computerSelection = elementsArr[randomIndex];
@@ -60,14 +64,14 @@
             (humanSelection === "paper" && computerSelection === "scissors") ||
             (humanSelection === "scissors" && computerSelection === "rock")) {
                 computerScore += 1;
-                alert(`Computer chose ${computerSelection}. You lose this round. Your score: ${humanScore}, computer's score: ${computerScore}`);
+                scoreDiv.textContent = `Computer chose ${computerSelection}. You lose this round. Your score: ${humanScore}, computer's score: ${computerScore}`;
                 } else if ((humanSelection === "rock" && computerSelection === "scissors") ||
                     (humanSelection === "paper" && computerSelection === "rock") ||
                     (humanSelection === "scissors" && computerSelection === "paper")) {
                 humanScore += 1;
-                alert(`Computer chose ${computerSelection}. You win this round. Your score: ${humanScore}, computer's score: ${computerScore}`);
+                scoreDiv.textContent = `Computer chose ${computerSelection}. You win this round. Your score: ${humanScore}, computer's score: ${computerScore}`;
                 } else if (humanSelection === computerSelection) {
-                alert(`Computer chose ${computerSelection}. Draw! Your score: ${humanScore}, computer's score: ${computerScore}`);
+                scoreDiv.textContent = `Computer chose ${computerSelection}. Draw! Your score: ${humanScore}, computer's score: ${computerScore}`;
                 }
         }
 
