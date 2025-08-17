@@ -4,6 +4,110 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            background-image: url("https://www.pixelstalk.net/wp-content/uploads/images1/Photos-blue-blur.png");
+            align-items: center; 
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #373737;
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center;
+            width: 90%;
+            max-width: 600px;
+            height: 600px;
+            background-color: #ebf3f7;
+            padding: 50px 50px;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 20px 20px;
+        }
+
+        button {
+            background-color: #B8C6C9;
+            padding: 20px;
+            width: 100px;
+            height: 40px;
+            border-radius: 20px;
+            border: none;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition-duration: 0.4s;
+        }
+
+        button:hover {
+            background-color: #85a2a9;
+        }
+
+        button:active {
+            background-color: #4e7480;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        h2 {
+            padding: 20px;
+        }
+
+        #score-div {
+        padding: 20px 0;
+        min-height: 40px; /* rezerwuje miejsce, nawet jak pusto */
+        }
+
+        #game-status {
+        margin-top: 20px;
+        min-height: 60px; /* rezerwuje przestrzeń */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px; /* odstęp między final score a przyciskiem */
+        }
+
+        #game-status div {
+        font-weight: bold;
+        font-size: 18px;
+        animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+
+      </style>
+      
 </head>
 <body>
 
@@ -13,10 +117,12 @@
         <div>The game is played until one player reaches 3 points.
             Click Rock, Paper, or Scissors to make your choice.
             The rules are simple:
-            Rock beats Scissors
-            Scissors beats Paper
-            Paper beats Rock
-            If both players choose the same, the round is a draw.
+            <ul>
+            <li>Rock beats Scissors</li>
+            <li>Scissors beats Paper</li>
+            <li>Paper beats Rock</li>
+            <li>If both players choose the same, the round is a draw.</li>
+            </ul>
             Your score and the computer’s score are shown after each round.
             First to 3 points wins the game! Let's start!</div>
         <div class="buttons">
@@ -25,6 +131,7 @@
             <button id="scissors-btn">Scissors</button>
         </div>
         <div id="score-div"></div>
+        <div id="game-status"></div>
     </div>
 
 
@@ -41,6 +148,7 @@
         const mainContainer = document.querySelector(".main-container");
         const restartButton = document.createElement("button");
         restartButton.textContent = "Restart";
+        const gameStatus = document.querySelector("#game-status");
 
         rockBtn.addEventListener("click", () => {
             humanSelection = "rock";
@@ -68,7 +176,7 @@
             paperBtn.disabled = false;
             scissorsBtn.disabled = false;
             finalScoreDiv.remove();
-            restartButton.remove();
+            gameStatus.innerHTML = "";
         });
 
         function disableButtons() {
@@ -96,14 +204,14 @@
 
                 if (humanScore === 3) {
                 finalScoreDiv.textContent = `You won the game! Final score: ${humanScore} : ${computerScore}`;
-                mainContainer.appendChild(finalScoreDiv);
+                gameStatus.appendChild(finalScoreDiv);
                 disableButtons();
-                mainContainer.appendChild(restartButton);
+                gameStatus.appendChild(restartButton);
             } else if (computerScore === 3) {
                 finalScoreDiv.textContent = `Computer won the game! Final score: ${humanScore} : ${computerScore}`;
-                mainContainer.appendChild(finalScoreDiv);
+                gameStatus.appendChild(finalScoreDiv);
                 disableButtons();
-                mainContainer.appendChild(restartButton);
+                gameStatus.appendChild(restartButton);
             }
         }
 
